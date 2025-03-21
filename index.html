@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator">
+        <div class="display">
+            <input id="display" type="text" disabled>
+            <div class="buttons">
+                <input class="a" id="c" id="clear" type="button" value="C">
+                <input class="a" id="c" type="button" value="/">
+                <input class="a" id="c" type="button" value="%">
+                <input class="a" id="b" type="button" value="÷">
+            </div>
+            <div class="buttons">
+                <input class="a" type="button" value="7">
+                <input class="a" type="button" value="8">
+                <input class="a" type="button" value="9">
+                <input class="a" id="b" type="button" value="x">
+            </div>
+            <div class="buttons">
+                <input class="a" type="button" value="4">
+                <input class="a" type="button" value="5">
+                <input class="a" type="button" value="6">
+                <input class="a" id="b" type="button" value="-">
+            </div>
+            <div class="buttons">
+                <input class="a" type="button" value="1">
+                <input class="a" type="button" value="2">
+                <input class="a" type="button" value="3">
+                <input class="a" id="b" type="button" value="+">
+            </div>
+            <div class="buttons">
+                <input class="a" id="zero" type="button" value="0">
+                <input class="a" type="button" value=".">
+                <input class="a" id="b"  type="button" value="=">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const display = document.getElementById('display');
+        const buttons = document.querySelectorAll('.a');
+        const clearButton = document.getElementById('clear');
+
+        // Add event listener to buttons
+        buttons.forEach(button => {
+            button.addEventListener('click', function () {
+                if (this.value === '=') {
+                    try {
+                        display.value = eval(display.value.replace('÷', '/').replace('x', '*')); // Replaces ÷ with / and x with *
+                    } catch (e) {
+                        display.value = 'Error';
+                    }
+                } else if (this.value === 'C') {
+                    display.value = ''; // Clear the display
+                } else {
+                    display.value += this.value;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
